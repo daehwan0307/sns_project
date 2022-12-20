@@ -12,6 +12,9 @@ spring:
     url: jdbc:mysql://<host>:3306/sns-project
     username: root
     password: <host>
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 
   # JPA ??
   jpa:
@@ -20,3 +23,4 @@ spring:
     database: mysql
     hibernate:
       ddl-auto: update
+
