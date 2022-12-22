@@ -1,31 +1,32 @@
 package com.example.sns_project.domain.entity;
 
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Getter
 @Entity
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@NoArgsConstructor
+@Getter
 @Setter
+@EntityListeners(AuditingEntityListener.class)
 public class User {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    private String user_name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private LocalDateTime deletedAt;
     private String password;
-    private int role;
-    private LocalDateTime registered_at;
-    private LocalDateTime removed_at;
-    private LocalDateTime updated_at;
-
-
+    @CreatedDate
+    private LocalDateTime registeredAt;
+    // private UserRole role;
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
+    private String userName;
 
 }
+
