@@ -2,6 +2,8 @@ package com.example.sns_project.service;
 
 import com.example.sns_project.domain.entity.User;
 
+import com.example.sns_project.exception.AppException;
+import com.example.sns_project.exception.ErrorCode;
 import com.example.sns_project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,7 +20,7 @@ public class UserService {
 
         userRepository.findByUserName(userName)
                 .ifPresent(user->{
-                    throw  new RuntimeException(userName+": 존재합니다");
+                    throw  new AppException(ErrorCode.DUPLICATED_USER_NAME, userName+"는 이미 있습니다.");
                 });
         //저장
         User user = User.builder()
