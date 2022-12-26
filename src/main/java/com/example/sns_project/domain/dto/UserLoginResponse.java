@@ -7,9 +7,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 @Builder
-public class UserJoinResponse {
-    private Long userId;
-    private String userName;
+public class UserLoginResponse {
+    private String jwt;
 }
-
-

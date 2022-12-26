@@ -1,9 +1,6 @@
 package com.example.sns_project.controller;
 
-import com.example.sns_project.domain.dto.Response;
-import com.example.sns_project.domain.dto.UserJoinRequest;
-import com.example.sns_project.domain.dto.UserJoinResponse;
-import com.example.sns_project.domain.dto.UserLoginRequest;
+import com.example.sns_project.domain.dto.*;
 import com.example.sns_project.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +23,9 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UserLoginRequest dto){
-        String token = userService.login(dto.getUserName(),dto.getPassword());
-        return ResponseEntity.ok().body(token);
+    public ResponseEntity<Response> login(@RequestBody UserLoginRequest dto){
+
+        UserLoginResponse userLoginResponse = userService.login(dto.getUserName(), dto.getPassword());
+        return ResponseEntity.ok().body(Response.success(userLoginResponse));
     }
 }

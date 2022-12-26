@@ -1,6 +1,7 @@
 package com.example.sns_project.service;
 
 import com.example.sns_project.domain.dto.UserJoinResponse;
+import com.example.sns_project.domain.dto.UserLoginResponse;
 import com.example.sns_project.domain.entity.User;
 
 import com.example.sns_project.exception.AppException;
@@ -41,14 +42,14 @@ public class UserService {
         UserJoinResponse userJoinResponse = UserJoinResponse
                 .builder()
                 .userName(user.getUserName())
-                .id(user.getId())
+                .userId(user.getId())
                 .build();
         return userJoinResponse;
 
     }
 
 
-    public String login(String userName, String password) {
+    public UserLoginResponse login(String userName, String password) {
         //userName 없음
         User selectedUser = userRepository.findByUserName(userName).orElseThrow(()->new AppException(ErrorCode.USERNAME_NOT_FOUND,userName+"이 없습니다."));
 
@@ -61,7 +62,11 @@ public class UserService {
         String token  = JwtUtil.createToken(selectedUser.getUserName(),key,expireTimeMs);
 
         //
+        UserLoginResponse userLoginResponse =UserLoginResponse
+                .builder()
+                .jwt(token)
+                .build();
 
-        return token;
+        return userLoginResponse;
     }
 }
