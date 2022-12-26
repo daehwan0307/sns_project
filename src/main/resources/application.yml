@@ -27,5 +27,4 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 
 jwt:
-  token:
-    secret: "secretKey"
+  secret: "secretKey"

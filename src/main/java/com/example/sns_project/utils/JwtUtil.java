@@ -5,10 +5,16 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 import java.util.Date;
-public class JwtTokenUtil {
+public class JwtUtil {
 
+    public static String getUserName(String token,String secretKey){
+        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().get("userName",String.class);
+    }
+    public static boolean isExpired(String token, String secretKey){
+        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getExpiration().before(new Date());
+    }
     //token 사용123
-    public static String createToken(String userName,String key,long expireTimeMs){
+    public static String createToken(String userName,String key,Long expireTimeMs){
         Claims claims = Jwts.claims();
         claims.put("userName",userName);
 
@@ -17,8 +23,7 @@ public class JwtTokenUtil {
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis()+expireTimeMs))
                 .signWith(SignatureAlgorithm.HS256,key)
-                .compact()
-                ;
+                .compact();
     }
 }
 

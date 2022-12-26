@@ -5,7 +5,7 @@ import com.example.sns_project.domain.entity.User;
 import com.example.sns_project.exception.AppException;
 import com.example.sns_project.exception.ErrorCode;
 import com.example.sns_project.repository.UserRepository;
-import com.example.sns_project.utils.JwtTokenUtil;
+import com.example.sns_project.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,7 +18,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder encoder;
 
-    @Value("${jwt.token.secret}")
+    @Value("${jwt.secret}")
     private String key;
     private Long expireTimeMs = 1000*60*60l;
 
@@ -50,7 +50,7 @@ public class UserService {
 
         }
 
-        String token  = JwtTokenUtil.createToken(selectedUser.getUserName(),key,expireTimeMs);
+        String token  = JwtUtil.createToken(selectedUser.getUserName(),key,expireTimeMs);
 
         //
 
