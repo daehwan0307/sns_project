@@ -7,6 +7,7 @@ import com.example.sns_project.exception.ErrorCode;
 import com.example.sns_project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder encoder;
 
     public String join(String userName, String password){
         //userName 중복  check
@@ -25,7 +27,7 @@ public class UserService {
         //저장
         User user = User.builder()
                 .userName(userName)
-                .password(password)
+                .password(encoder.encode(password))
                 .build();
         userRepository.save(user);
 
