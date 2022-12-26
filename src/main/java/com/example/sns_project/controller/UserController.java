@@ -1,6 +1,10 @@
 package com.example.sns_project.controller;
 
 import com.example.sns_project.domain.dto.*;
+import com.example.sns_project.domain.dto.user.UserJoinRequest;
+import com.example.sns_project.domain.dto.user.UserJoinResponse;
+import com.example.sns_project.domain.dto.user.UserLoginRequest;
+import com.example.sns_project.domain.dto.user.UserLoginResponse;
 import com.example.sns_project.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

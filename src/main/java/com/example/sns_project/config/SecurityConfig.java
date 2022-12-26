@@ -32,9 +32,9 @@ public class SecurityConfig {
                 .csrf().disable()
                 .cors().and()
                 .authorizeRequests()
-                //.antMatchers("/api/**").permitAll()
+                .antMatchers("/api/**").permitAll()
                 .antMatchers("/api/v1/users/join","/api/v1/users/login").permitAll()
-                .antMatchers(HttpMethod.POST,"/api/v1/posts/*", "/api/v1/posts").authenticated()
+                //.antMatchers(HttpMethod.POST,"/api/v1/posts/*", "/api/v1/posts").authenticated()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS) //jwt사용하는 겨우 씀

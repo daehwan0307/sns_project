@@ -1,4 +1,4 @@
-package com.example.sns_project.domain.dto;
+package com.example.sns_project.domain.dto.user;
 
 
 import lombok.AllArgsConstructor;

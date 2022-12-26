@@ -1,11 +1,10 @@
 package com.example.sns_project.controller;
 
-import com.example.sns_project.domain.dto.UserJoinRequest;
-import com.example.sns_project.domain.dto.UserLoginRequest;
+import com.example.sns_project.domain.dto.user.UserJoinRequest;
+import com.example.sns_project.domain.dto.user.UserLoginRequest;
 import com.example.sns_project.exception.AppException;
 import com.example.sns_project.exception.ErrorCode;
 import com.example.sns_project.service.UserService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,7 +15,6 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;

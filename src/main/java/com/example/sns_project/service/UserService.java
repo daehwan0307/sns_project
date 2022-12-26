@@ -1,7 +1,7 @@
 package com.example.sns_project.service;
 
-import com.example.sns_project.domain.dto.UserJoinResponse;
-import com.example.sns_project.domain.dto.UserLoginResponse;
+import com.example.sns_project.domain.dto.user.UserJoinResponse;
+import com.example.sns_project.domain.dto.user.UserLoginResponse;
 import com.example.sns_project.domain.entity.User;
 
 import com.example.sns_project.exception.AppException;
@@ -27,7 +27,7 @@ public class UserService {
     private Long expireTimeMs = 1000*60*60l;
 
     public UserJoinResponse join(String userName, String password){
-        Optional<User> optionalUser = userRepository.findByUserName(userName);
+        //Optional<User> optionalUser = userRepository.findByUserName(userName);
 
         userRepository.findByUserName(userName)
                 .ifPresent(user->{

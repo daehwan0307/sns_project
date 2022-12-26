@@ -7,6 +7,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Builder
@@ -22,5 +24,7 @@ public class User extends AuditEntity {
     private String password;
     private String userName;
 
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts = new ArrayList<>();
 }
 

@@ -2,10 +2,7 @@ package com.example.sns_project.domain.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Builder
@@ -19,5 +16,10 @@ public class Post extends  AuditEntity {
     private Long id;
     private String title;
     private String body;
+
+    //Post : User  N:1
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }
