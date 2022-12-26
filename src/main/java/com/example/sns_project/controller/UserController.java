@@ -1,6 +1,8 @@
 package com.example.sns_project.controller;
 
+import com.example.sns_project.domain.dto.Response;
 import com.example.sns_project.domain.dto.UserJoinRequest;
+import com.example.sns_project.domain.dto.UserJoinResponse;
 import com.example.sns_project.domain.dto.UserLoginRequest;
 import com.example.sns_project.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -18,9 +20,9 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/join")
-    public ResponseEntity<String> join(@RequestBody UserJoinRequest dto){
-        userService.join(dto.getUserName(), dto.getPassword());
-        return ResponseEntity.ok().body("회원가입 성공 했습니다.");
+    public ResponseEntity<Response> join(@RequestBody UserJoinRequest dto){
+        UserJoinResponse userJoinResponse = userService.join(dto.getUserName(), dto.getPassword());
+        return ResponseEntity.ok().body(Response.success(userJoinResponse));
     }
 
     @PostMapping("/login")

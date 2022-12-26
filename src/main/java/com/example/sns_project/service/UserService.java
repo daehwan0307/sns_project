@@ -1,5 +1,6 @@
 package com.example.sns_project.service;
 
+import com.example.sns_project.domain.dto.UserJoinResponse;
 import com.example.sns_project.domain.entity.User;
 
 import com.example.sns_project.exception.AppException;
@@ -10,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,8 +25,8 @@ public class UserService {
     private String key;
     private Long expireTimeMs = 1000*60*60l;
 
-    public String join(String userName, String password){
-        //userName 중복  check
+    public UserJoinResponse join(String userName, String password){
+        Optional<User> optionalUser = userRepository.findByUserName(userName);
 
         userRepository.findByUserName(userName)
                 .ifPresent(user->{
@@ -35,8 +38,13 @@ public class UserService {
                 .password(encoder.encode(password))
                 .build();
         userRepository.save(user);
+        UserJoinResponse userJoinResponse = UserJoinResponse
+                .builder()
+                .userName(user.getUserName())
+                .id(user.getId())
+                .build();
+        return userJoinResponse;
 
-        return "SUCCESS";
     }
 
 
