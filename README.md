@@ -1,4 +1,8 @@
-목차
+# LikeLionBackEndSchool2기
+### 개인프로젝트
+
+swagger 주소 : http://ec2-43-201-77-49.ap-northeast-2.compute.amazonaws.com:8080/swagger-ui/#/
+
 
 ---
 
@@ -15,7 +19,7 @@
 - 데이터베이스 : MySql 8.0
 - 필수 라이브러리 : SpringBoot Web, MySQL, Spring Data JPA, Lombok, Spring Security
 
-## **멋사스네스(MutsaSNS) 서비스 소개**
+## **sns_project 서비스 소개**
 
 ---
 
@@ -56,12 +60,11 @@
 
 # Architecture(아키텍처)
 
-[https://lh5.googleusercontent.com/PpZhHTjogNa5qt32TX7-Gws51y6_wBckwc-6i_0zXjdfSGxTUpARXW9wFJcUIciCCPQW2bE2vZreS373_uMk-buO1fG-FgueXhe-cU-riRdu0hZugZJhF01H8fMv3rYUt86sN8uJ_DUg_wLjMOt1R9LsQv2XoobfSOvHlYehdfMDDoHHr_kaNYPHBTBXoQ](https://lh5.googleusercontent.com/PpZhHTjogNa5qt32TX7-Gws51y6_wBckwc-6i_0zXjdfSGxTUpARXW9wFJcUIciCCPQW2bE2vZreS373_uMk-buO1fG-FgueXhe-cU-riRdu0hZugZJhF01H8fMv3rYUt86sN8uJ_DUg_wLjMOt1R9LsQv2XoobfSOvHlYehdfMDDoHHr_kaNYPHBTBXoQ)
+![img.png](img.png)
 
 ▲ 위 Layered Architecture 구조에 맞게 작성 해주세요.
 
 - 각 단에 데이터를 전달 받을시 DTO 형태로 전달합니다.
 
 # ERD
-
-![ERD.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d2961067-e8d8-4a30-b8c0-67ca568b6dcb/ERD.png)
+![img_1.png](img_1.png)
