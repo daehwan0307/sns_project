@@ -38,6 +38,13 @@ public class PostController {
         return ResponseEntity.ok().body(Response.success(postResponse));
 
     }
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Response> editPost(@PathVariable Long id,@RequestBody PostRequest dto){
+//
+//        PostResponse postResponse = postService.editPostById(id);
+//        return ResponseEntity.ok().body(Response.success(postResponse));
+//
+//    }
 
 
 

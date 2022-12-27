@@ -45,6 +45,19 @@ public class PostService {
 
         return postResponse;
     }
+//    public PostResponse editPostById(Long postsId) {
+//
+//        Post post = postRepository.findById(postsId)
+//                .orElseThrow(()-> new AppException(ErrorCode.POST_NOT_FOUND, postsId + "가 없습니다."));
+//        postRepository.update(post);
+//        PostResponse postResponse = PostResponse
+//                .builder()
+//                .message("포스트 수정 완료")
+//                .postId(post.getId())
+//                .build();
+//
+//        return postResponse;
+//    }
     public PostContentResponse getPostById(Long postsId) {
         Post post = postRepository.findById(postsId)
                 .orElseThrow(()-> new AppException(ErrorCode.POST_NOT_FOUND, postsId + "가 없습니다."));
