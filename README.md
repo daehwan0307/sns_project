@@ -62,9 +62,18 @@ swagger 주소 : http://ec2-43-201-77-49.ap-northeast-2.compute.amazonaws.com:80
 
 ![img.png](img.png)
 
-▲ 위 Layered Architecture 구조에 맞게 작성 해주세요.
 
 - 각 단에 데이터를 전달 받을시 DTO 형태로 전달합니다.
 
 # ERD
 ![img_1.png](img_1.png)
+
+
+--
+## 특이사항
+    1.아직 구현하지 못한 postController쪽 기능을 마저 완성시키고 싶다.
+    2.post에 현재 user정보를 담는 기능을 아직 완성하지 못하였다. Authentication??
+
+## 접근방법
+    1. 최대한 Service 계층에서 로직이 수행되려고 노력을 하였다.
+    2. 
