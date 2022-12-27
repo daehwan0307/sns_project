@@ -1,6 +1,7 @@
 package com.example.sns_project.controller;
 
 import com.example.sns_project.domain.dto.Response;
+import com.example.sns_project.domain.dto.post.PostContentResponse;
 import com.example.sns_project.domain.dto.post.PostRequest;
 import com.example.sns_project.domain.dto.post.PostResponse;
 import com.example.sns_project.service.PostService;
@@ -22,6 +23,21 @@ public class PostController {
 
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Response> getPost(@PathVariable Long id){
+
+        PostContentResponse postResponse = postService.getPostById(id);
+        return ResponseEntity.ok().body(Response.success(postResponse));
+
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Response> deletePost(@PathVariable Long id){
+
+        PostResponse postResponse = postService.deletePostById(id);
+        return ResponseEntity.ok().body(Response.success(postResponse));
+
+    }
 
 
 
