@@ -2,7 +2,17 @@
 ### 개인프로젝트
 
 swagger 주소 : http://ec2-43-201-77-49.ap-northeast-2.compute.amazonaws.com:8080/swagger-ui/#/
-
+# API 명세서
+| Index | Method | URI | Description |
+| --- | --- | --- | --- |
+| 1 | GET | /api/v1/hello | CI/CD 를 위한 TEST API |
+| 2 | POST | /api/v1/posts | 글 작성 |
+| 3 | GET | /api/v1/posts/{id} | 글 조회 |
+| 4 | DELETE | /api/v1/posts/{id} | 글 삭제 |
+| 5 | POST | /api/v1/users/join | 회원가입 |
+| 6 | POST | /api/v1/users/login | 로그인 |
+|  |  |  |  |
+|  |  |  |  |
 
 ---
 
@@ -67,6 +77,8 @@ swagger 주소 : http://ec2-43-201-77-49.ap-northeast-2.compute.amazonaws.com:80
 
 # ERD
 ![img_1.png](img_1.png)
+
+
 
 
 --
