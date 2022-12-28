@@ -26,19 +26,19 @@ public class PostController {
     }
 
     //게시글 1개 조회
-    @GetMapping("/{postId}")
-    public ResponseEntity<Response> getPost(@PathVariable Long postId){
+    @GetMapping("/{id}")
+    public ResponseEntity<Response> getPost(@PathVariable Long id){
 
-        PostContentResponse postContentResponse = postService.getPostById(postId);
+        PostContentResponse postContentResponse = postService.getPostById(id);
         return ResponseEntity.ok().body(Response.success(postContentResponse));
 
     }
 
     //게시글 삭제
-    @DeleteMapping("/{postId}")
-    public ResponseEntity<Response> deletePost(@PathVariable Long postId){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Response> deletePost(@PathVariable Long id){
 
-        PostResponse postResponse = postService.deletePostById(postId);
+        PostResponse postResponse = postService.deletePostById(id);
         return ResponseEntity.ok().body(Response.success(postResponse));
 
     }
