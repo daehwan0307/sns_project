@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
 
     private final PostService postService;
+
+    //게시글 추가
     @PostMapping
     public ResponseEntity<Response> addPost(@RequestBody PostRequest dto){
         PostResponse postResponse = postService.addPost(dto.getTitle(), dto.getBody());
@@ -23,14 +25,16 @@ public class PostController {
 
     }
 
+    //게시글 1개 조회
     @GetMapping("/{id}")
     public ResponseEntity<Response> getPost(@PathVariable Long id){
 
-        PostContentResponse postResponse = postService.getPostById(id);
-        return ResponseEntity.ok().body(Response.success(postResponse));
+        PostContentResponse postContentResponse = postService.getPostById(id);
+        return ResponseEntity.ok().body(Response.success(postContentResponse));
 
     }
 
+    //게시글 삭제
     @DeleteMapping("/{id}")
     public ResponseEntity<Response> deletePost(@PathVariable Long id){
 

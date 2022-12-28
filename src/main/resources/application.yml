@@ -27,4 +27,4 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 
 jwt:
-  secret: <host>
+  secret: hello.world.key

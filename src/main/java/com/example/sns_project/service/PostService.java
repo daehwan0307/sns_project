@@ -63,15 +63,14 @@ public class PostService {
                 .orElseThrow(()-> new AppException(ErrorCode.POST_NOT_FOUND, postsId + "가 없습니다."));
 
         PostContentResponse postContentResponse = PostContentResponse
-
-                .builder()
-                .id(postsId)
-                .title(post.getTitle())
-                .body(post.getBody())
-                .lastModifiedAt(post.getLastModifiedAt())
-                .createdAt(post.getCreatedAt())
-                .userName(post.getUser().getUserName())
-                .build();
+                    .builder()
+                    .id(postsId)
+                    .title(post.getTitle())
+                    .body(post.getBody())
+                    .lastModifiedAt(post.getLastModifiedAt())
+                    .createdAt(post.getCreatedAt())
+                    .userName(post.getUser().getUserName())
+                    .build();
 
         return postContentResponse;
     }

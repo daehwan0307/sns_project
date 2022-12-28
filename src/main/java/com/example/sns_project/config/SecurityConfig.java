@@ -25,6 +25,7 @@ public class SecurityConfig {
     private String key;
 
 
+    //인가
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws  Exception{
         return  httpSecurity
