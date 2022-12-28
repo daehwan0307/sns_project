@@ -26,7 +26,7 @@ public class PostController {
     }
 
     //게시글 1개 조회
-    @GetMapping("/{id}")
+    @GetMapping("/{postId}")
     public ResponseEntity<Response> getPost(@PathVariable Long id){
 
         PostContentResponse postContentResponse = postService.getPostById(id);
@@ -35,7 +35,7 @@ public class PostController {
     }
 
     //게시글 삭제
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{postId}")
     public ResponseEntity<Response> deletePost(@PathVariable Long id){
 
         PostResponse postResponse = postService.deletePostById(id);
