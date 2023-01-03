@@ -7,6 +7,7 @@ import com.example.sns_project.domain.dto.post.PostResponse;
 import com.example.sns_project.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,8 +20,8 @@ public class PostController {
 
     //게시글 추가
     @PostMapping
-    public ResponseEntity<Response> addPost(@RequestBody PostRequest dto){
-        PostResponse postResponse = postService.addPost(dto.getTitle(), dto.getBody());
+    public ResponseEntity<Response> addPost(@RequestBody PostRequest dto, Authentication authentication){
+        PostResponse postResponse = postService.addPost(dto.getTitle(), dto.getBody(),authentication.getName());
         return ResponseEntity.ok().body(Response.success(postResponse));
 
     }

@@ -3,6 +3,7 @@ package com.example.sns_project.service;
 import com.example.sns_project.domain.dto.post.PostContentResponse;
 import com.example.sns_project.domain.dto.post.PostResponse;
 import com.example.sns_project.domain.entity.Post;
+import com.example.sns_project.domain.entity.User;
 import com.example.sns_project.exception.AppException;
 import com.example.sns_project.exception.ErrorCode;
 import com.example.sns_project.repository.PostRepository;
@@ -16,12 +17,16 @@ public class PostService {
 
     private final PostRepository postRepository;
     private final UserRepository userRepository;
-    public PostResponse addPost(String title,String body) {
+    public PostResponse addPost(String title,String body,String userName) {
+
+        User user = userRepository.findByUserName(userName)
+                .orElseThrow(()-> new AppException(ErrorCode.USERNAME_NOT_FOUND, userName + "이 없습니다."));
 
         Post post = Post
                 .builder()
                 .title(title)
                 .body(body)
+                .user(user)
                 .build();
         postRepository.save(post);
         PostResponse postResponse = PostResponse
