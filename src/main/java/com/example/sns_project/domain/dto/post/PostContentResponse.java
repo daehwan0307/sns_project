@@ -23,5 +23,15 @@ public class PostContentResponse extends AuditEntity {
     private LocalDateTime createdAt;
     private LocalDateTime lastModifiedAt;
 
+//    public static PostContentResponse toEntity(Post post) {
+//        return PostContentResponse.builder()
+//                .id(post.getId())
+//                .title(post.getTitle())
+//                .body(post.getBody())
+//                .userName(post.getUser().getUserName())
+//                .createdAt(post.getCreatedAt())
+//                .lastModifiedAt(post.getLastModifiedAt())
+//                .build();
+//    }
 
 }
