@@ -2,6 +2,7 @@ package com.example.sns_project.service;
 
 import com.example.sns_project.domain.dto.post.PostContentResponse;
 import com.example.sns_project.domain.dto.post.PostListResponse;
+import com.example.sns_project.domain.dto.post.PostRequest;
 import com.example.sns_project.domain.dto.post.PostResponse;
 import com.example.sns_project.domain.entity.Post;
 import com.example.sns_project.domain.entity.User;
@@ -12,6 +13,7 @@ import com.example.sns_project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.config.ResourceReaderRepositoryPopulatorBeanDefinitionParser;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -88,6 +90,22 @@ public class PostService {
                     .build();
 
         return postContentResponse;
+    }
+    public PostResponse editPostById(Long postsId , PostRequest dto) {
+
+        Post post = postRepository.findById(postsId)
+                .orElseThrow(()-> new AppException(ErrorCode.POST_NOT_FOUND, postsId + "가 없습니다."));
+
+        post.setBody(dto.getBody());
+        post.setTitle(dto.getTitle());
+        postRepository.save(post);
+        PostResponse postResponse = PostResponse
+                .builder()
+                .message("포스트 수정 완료")
+                .postId(post.getId())
+                .build();
+
+        return postResponse;
     }
 
 }
