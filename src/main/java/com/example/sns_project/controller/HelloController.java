@@ -1,6 +1,7 @@
 package com.example.sns_project.controller;
 
 import com.example.sns_project.service.AlgorithmService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/hello")
 @RequiredArgsConstructor
+@Api(tags = {"Test API"})
 public class HelloController {
     @GetMapping
     public ResponseEntity<String> hello(){
