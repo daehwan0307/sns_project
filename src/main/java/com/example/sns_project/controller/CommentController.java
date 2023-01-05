@@ -54,10 +54,10 @@ public class CommentController {
     }
 
     @ApiOperation(value = "댓글 전체 조회", notes = "댓글 전체 리스트를 조회합니다.")
-    @GetMapping("/comments")
-    public Response<Page<CommentResponse>> getAllComments(@PageableDefault(size = 20, sort = {"id"}, direction = Sort.Direction.DESC)Pageable pageable)
+    @GetMapping("/{postsId}/comments")
+    public Response<Page<CommentResponse>> getAllComments(@PageableDefault(size = 20, sort = {"id"}, direction = Sort.Direction.DESC)Pageable pageable,@PathVariable Long postsId)
     {
-        return Response.success(commentService.getAllComments(pageable));
+        return Response.success(commentService.getAllComments(pageable,postsId));
     }
 
 }

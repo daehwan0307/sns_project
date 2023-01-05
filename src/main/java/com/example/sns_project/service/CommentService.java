@@ -95,9 +95,10 @@ public class CommentService {
 
     }
 
-    public Page<CommentResponse> getAllComments(Pageable pageable){
+    public Page<CommentResponse> getAllComments(Pageable pageable,Long postId){
 
-        Page<Comment> comments =commentRepository.findAll(pageable);
+        Page<Comment> comments =commentRepository.findByPostId(postId,pageable);
+
         Page<CommentResponse> commentResponses = comments.map(comment -> CommentResponse.builder()
                 .id(comment.getId())
                 .comment(comment.getComment())
