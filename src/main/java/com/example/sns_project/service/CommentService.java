@@ -3,6 +3,7 @@ package com.example.sns_project.service;
 import com.example.sns_project.domain.dto.comment.CommentDeleteResponse;
 import com.example.sns_project.domain.dto.comment.CommentRequest;
 import com.example.sns_project.domain.dto.comment.CommentResponse;
+import com.example.sns_project.domain.dto.post.PostContentResponse;
 import com.example.sns_project.domain.dto.post.PostResponse;
 import com.example.sns_project.domain.entity.Comment;
 import com.example.sns_project.domain.entity.Post;
@@ -13,6 +14,8 @@ import com.example.sns_project.repository.CommentRepository;
 import com.example.sns_project.repository.PostRepository;
 import com.example.sns_project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -92,5 +95,16 @@ public class CommentService {
 
     }
 
+    public Page<CommentResponse> getAllComments(Pageable pageable){
 
+        Page<Comment> comments =commentRepository.findAll(pageable);
+        Page<CommentResponse> commentResponses = comments.map(comment -> CommentResponse.builder()
+                .id(comment.getId())
+                .comment(comment.getComment())
+                .userName(comment.getUser().getUserName())
+                .postId(comment.getPost().getId())
+                .createdAt(comment.getCreatedAt())
+                .build());
+        return commentResponses;
+    }
 }

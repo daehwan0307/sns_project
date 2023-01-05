@@ -10,6 +10,10 @@ import com.example.sns_project.service.CommentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -47,6 +51,13 @@ public class CommentController {
         CommentResponse commentResponse = commentService.editComment(dto, postsId,id);
 
         return ResponseEntity.ok().body(Response.success(commentResponse));
+    }
+
+    @ApiOperation(value = "댓글 전체 조회", notes = "댓글 전체 리스트를 조회합니다.")
+    @GetMapping("/comments")
+    public Response<Page<CommentResponse>> getAllComments(@PageableDefault(size = 20, sort = {"id"}, direction = Sort.Direction.DESC)Pageable pageable)
+    {
+        return Response.success(commentService.getAllComments(pageable));
     }
 
 }
