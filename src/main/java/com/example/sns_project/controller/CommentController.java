@@ -1,6 +1,7 @@
 package com.example.sns_project.controller;
 
 import com.example.sns_project.domain.dto.Response;
+import com.example.sns_project.domain.dto.comment.CommentDeleteResponse;
 import com.example.sns_project.domain.dto.comment.CommentRequest;
 import com.example.sns_project.domain.dto.comment.CommentResponse;
 import com.example.sns_project.domain.dto.post.PostRequest;
@@ -21,13 +22,22 @@ import org.springframework.web.bind.annotation.*;
 public class CommentController {
 
     private final CommentService commentService;
-    @PostMapping("/{postsId}/comments")
     @ApiOperation(value = "댓글 작성",notes = "Comment를 이용하여 댓글을 작성합니다.")
+    @PostMapping("/{postsId}/comments")
+
        public ResponseEntity<Response> addComment(@RequestBody CommentRequest dto, Authentication authentication,@PathVariable Long postsId){
         CommentResponse commentResponse = commentService.addComment(dto,authentication.getName(), postsId);
 
         return ResponseEntity.ok().body(Response.success(commentResponse));
     }
 
+    @ApiOperation(value = "게시글 삭제", notes = "PostId를 이용하여 게시글을 삭제합니다.")
+    @DeleteMapping("/{postsId}/comments/{id}")
+    public ResponseEntity<Response> deletePost(@PathVariable Long id,Long postsId){
+
+        CommentDeleteResponse commentDeleteResponse = commentService.deleteComment(postsId,id);
+        return ResponseEntity.ok().body(Response.success(commentDeleteResponse));
+
+    }
 
 }

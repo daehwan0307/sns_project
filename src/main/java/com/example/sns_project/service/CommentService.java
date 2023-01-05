@@ -1,5 +1,6 @@
 package com.example.sns_project.service;
 
+import com.example.sns_project.domain.dto.comment.CommentDeleteResponse;
 import com.example.sns_project.domain.dto.comment.CommentRequest;
 import com.example.sns_project.domain.dto.comment.CommentResponse;
 import com.example.sns_project.domain.dto.post.PostResponse;
@@ -48,6 +49,23 @@ public class CommentService {
 
         return commentResponse;
 
+    }
+
+    public CommentDeleteResponse deleteComment(Long postsId,Long commentsId){
+        Post post = postRepository.findById(postsId)
+                .orElseThrow(()-> new AppException(ErrorCode.POST_NOT_FOUND, postsId + "가 없습니다."));
+
+        Comment comment = commentRepository.findById(commentsId)
+                .orElseThrow(()->new AppException(ErrorCode.COMMENT_NOT_FOUND,commentsId+"가 없습니다."));
+
+        commentRepository.delete(comment);
+        CommentDeleteResponse commentDeleteResponse = CommentDeleteResponse
+                .builder()
+                .message("댓글 삭제 완료")
+                .commentId(comment.getId())
+                .build();
+
+        return commentDeleteResponse;
     }
 
 
