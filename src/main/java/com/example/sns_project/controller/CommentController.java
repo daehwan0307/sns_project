@@ -31,13 +31,22 @@ public class CommentController {
         return ResponseEntity.ok().body(Response.success(commentResponse));
     }
 
-    @ApiOperation(value = "게시글 삭제", notes = "PostId를 이용하여 게시글을 삭제합니다.")
+    @ApiOperation(value = "댓글 삭제", notes = "CommentId와 PostId를 이용하여 댓글을 삭제합니다.")
     @DeleteMapping("/{postsId}/comments/{id}")
     public ResponseEntity<Response> deletePost(@PathVariable Long id,Long postsId){
 
         CommentDeleteResponse commentDeleteResponse = commentService.deleteComment(postsId,id);
         return ResponseEntity.ok().body(Response.success(commentDeleteResponse));
 
+    }
+
+    @ApiOperation(value = "댓글 수성",notes = "Comment를 이용하여 댓글을 수정합니다.")
+    @PutMapping("/{postsId}/comments/{id}")
+
+    public ResponseEntity<Response> editComment(@RequestBody CommentRequest dto, Authentication authentication,@PathVariable Long postsId,Long id){
+        CommentResponse commentResponse = commentService.editComment(dto, postsId,id);
+
+        return ResponseEntity.ok().body(Response.success(commentResponse));
     }
 
 }

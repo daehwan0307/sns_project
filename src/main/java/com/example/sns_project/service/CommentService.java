@@ -68,5 +68,29 @@ public class CommentService {
         return commentDeleteResponse;
     }
 
+    public CommentResponse editComment(CommentRequest dto,Long postsId, Long commentsId){
+
+        Post post = postRepository.findById(postsId)
+                .orElseThrow(()->new AppException(ErrorCode.POST_NOT_FOUND,postsId+"가 없습니다."));
+        Comment comment = commentRepository.findById(commentsId)
+                .orElseThrow(()->new AppException(ErrorCode.COMMENT_NOT_FOUND,commentsId+"가 없습니다."));
+
+        comment.setComment(dto.getComment());
+
+        commentRepository.save(comment);
+
+        CommentResponse commentResponse = CommentResponse.builder()
+                .id(comment.getId())
+                .comment(comment.getComment())
+                .userName(comment.getUser().getUserName())
+                .postId(postsId)
+                .createdAt(comment.getCreatedAt())
+                .lastModifiedAt(comment.getLastModifiedAt())
+                .build();
+
+        return commentResponse;
+
+    }
+
 
 }
