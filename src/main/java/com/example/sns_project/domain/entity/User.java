@@ -24,6 +24,9 @@ public class User extends AuditEntity {
     private String password;
     private String userName;
 
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
+
     @OneToMany(mappedBy = "user")
     private List<Post> posts = new ArrayList<>();
 }

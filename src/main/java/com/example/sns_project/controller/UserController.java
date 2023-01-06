@@ -10,10 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -36,5 +33,12 @@ public class UserController {
 
         UserLoginResponse userLoginResponse = userService.login(dto.getUserName(), dto.getPassword());
         return ResponseEntity.ok().body(Response.success(userLoginResponse));
+    }
+
+    @ApiOperation(value = "사용자 권한 변경", notes = "USER의 권한을 ADMIN으로 변경합니다.")
+    @PostMapping("/{id}/role/change")
+    public String userRoleChange(@PathVariable Long id){
+
+       return userService.userRoleChange(id);
     }
 }

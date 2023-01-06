@@ -4,6 +4,7 @@ import com.example.sns_project.domain.dto.user.UserJoinResponse;
 import com.example.sns_project.domain.dto.user.UserLoginResponse;
 import com.example.sns_project.domain.entity.User;
 
+import com.example.sns_project.domain.entity.UserRole;
 import com.example.sns_project.exception.AppException;
 import com.example.sns_project.exception.ErrorCode;
 import com.example.sns_project.repository.UserRepository;
@@ -12,8 +13,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -34,10 +33,12 @@ public class UserService {
                     throw  new AppException(ErrorCode.DUPLICATED_USER_NAME, userName+"는 이미 있습니다.");
                 });
         //저장
+
         User user = User.builder()
                 .userName(userName)
                 .password(encoder.encode(password))
                 .build();
+        user.setRole(UserRole.USER);
         userRepository.save(user);
         UserJoinResponse userJoinResponse = UserJoinResponse
                 .builder()
@@ -69,4 +70,15 @@ public class UserService {
 
         return userLoginResponse;
     }
+
+    public String userRoleChange(Long userId){
+
+        User user = userRepository.findById(userId).orElseThrow(()->new AppException(ErrorCode.USERID_NOT_FOUND,userId+"유저가 존재하지 않습니다."));
+
+        if(user.getRole().equals("USER")){
+            user.setRole(UserRole.ADMIN);
+        }
+        return "유저의 권한이 ADMIN으로 변경되었습니다.";
+    }
+
 }
