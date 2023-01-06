@@ -74,10 +74,14 @@ public class UserService {
     public String userRoleChange(Long userId){
 
         User user = userRepository.findById(userId).orElseThrow(()->new AppException(ErrorCode.USERID_NOT_FOUND,userId+"유저가 존재하지 않습니다."));
+        
 
-        if(user.getRole().equals("USER")){
+        if(user.getRole()==UserRole.USER){
             user.setRole(UserRole.ADMIN);
+        }else {
+            user.setRole(UserRole.USER);
         }
+        userRepository.save(user);
         return "유저의 권한이 ADMIN으로 변경되었습니다.";
     }
 
