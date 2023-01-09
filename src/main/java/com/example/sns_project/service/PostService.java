@@ -104,7 +104,6 @@ public class PostService {
                 .message("포스트 수정 완료")
                 .postId(post.getId())
                 .build();
-
         return postResponse;
     }
 

@@ -37,7 +37,7 @@ public class CommentController {
 
     @ApiOperation(value = "댓글 삭제", notes = "CommentId와 PostId를 이용하여 댓글을 삭제합니다.")
     @DeleteMapping("/{postsId}/comments/{id}")
-    public ResponseEntity<Response> deletePost(@PathVariable Long id,Long postsId){
+    public ResponseEntity<Response> deletePost(@PathVariable Long id,@PathVariable Long postsId){
 
         CommentDeleteResponse commentDeleteResponse = commentService.deleteComment(postsId,id);
         return ResponseEntity.ok().body(Response.success(commentDeleteResponse));
@@ -47,7 +47,7 @@ public class CommentController {
     @ApiOperation(value = "댓글 수성",notes = "Comment를 이용하여 댓글을 수정합니다.")
     @PutMapping("/{postsId}/comments/{id}")
 
-    public ResponseEntity<Response> editComment(@RequestBody CommentRequest dto, Authentication authentication,@PathVariable Long postsId,Long id){
+    public ResponseEntity<Response> editComment(@RequestBody CommentRequest dto, Authentication authentication,@PathVariable Long postsId,@PathVariable Long id){
         CommentResponse commentResponse = commentService.editComment(dto, postsId,id);
 
         return ResponseEntity.ok().body(Response.success(commentResponse));
@@ -55,7 +55,7 @@ public class CommentController {
 
     @ApiOperation(value = "댓글 전체 조회", notes = "댓글 전체 리스트를 조회합니다.")
     @GetMapping("/{postsId}/comments")
-    public Response<Page<CommentResponse>> getAllComments(@PageableDefault(size = 20, sort = {"id"}, direction = Sort.Direction.DESC)Pageable pageable,@PathVariable Long postsId)
+    public Response<Page<CommentResponse>> getAllComments(@PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC)Pageable pageable,@PathVariable Long postsId)
     {
         return Response.success(commentService.getAllComments(pageable,postsId));
     }
