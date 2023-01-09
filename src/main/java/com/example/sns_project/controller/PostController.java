@@ -74,6 +74,12 @@ public class PostController {
 
     }
 
+    @ApiOperation(value = "마이 피드 조회", notes = "로그인된 유저만의 피드목록을 조회합니다.")
+    @GetMapping("/my")
+    public Response<Page<PostContentResponse>> getMyPosts(@PageableDefault(size = 20, sort = {"id"}, direction = Sort.Direction.DESC)Pageable pageable ,Authentication authentication){
+        return Response.success(postService.getMyAllPost(pageable,authentication));
+    }
+
 
 
 }
