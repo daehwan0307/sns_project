@@ -6,10 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/posts")
@@ -26,4 +23,10 @@ public class GoodController {
         return Response.success(likeService.clickLike(authentication.getName(),postId));
 
     }
+    @GetMapping("/{postsId}/likes")
+    @ApiOperation(value = "좋아요수", notes = "게시글의 좋아요 개수 조회")
+    public Response<Long> getLikes(@PathVariable Long postsId) {
+        return Response.success(likeService.likeCount(postsId));
+    }
+
 }

@@ -8,4 +8,6 @@ import java.util.Optional;
 
 public interface GoodRepository extends JpaRepository<Good,Long> {
     Boolean findByUser(User user);
+
+    Long countByPostId(Long postId);
 }

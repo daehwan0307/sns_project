@@ -11,6 +11,8 @@ import com.example.sns_project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class GoodService {
@@ -26,15 +28,20 @@ public class GoodService {
         Post post = postRepository.findById(postId)
                 .orElseThrow(()-> new AppException(ErrorCode.POST_NOT_FOUND,"post가 존재하지 않습니다."));
 
-        
         Good good = Good.builder()
                 .post(post)
                 .user(user)
                 .build();
-
+        
         goodRepository.save(good);
 
         return "좋아요를 눌렀습니다.";
+
+    }
+    public Long likeCount(Long postId){
+
+        Optional<Post> post = postRepository.findById(postId);
+        return goodRepository.countByPostId(postId);
 
     }
 }
