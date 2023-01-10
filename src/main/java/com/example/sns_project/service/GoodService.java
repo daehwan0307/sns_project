@@ -39,9 +39,6 @@ public class GoodService {
 
     }
     public Long likeCount(Long postId){
-
-        Optional<Post> post = postRepository.findById(postId);
         return goodRepository.countByPostId(postId);
-
     }
 }
