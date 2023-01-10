@@ -116,7 +116,6 @@ public class PostService {
                 .title(post.getTitle())
                 .body(post.getBody())
                 .userName(post.getUser().getUserName())
-                .lastModifiedAt(post.getLastModifiedAt())
                 .createdAt(post.getCreatedAt())
                 .build());
 
