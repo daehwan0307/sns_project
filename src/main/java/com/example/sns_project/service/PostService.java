@@ -13,12 +13,9 @@ import com.example.sns_project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.config.ResourceReaderRepositoryPopulatorBeanDefinitionParser;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -110,7 +107,6 @@ public class PostService {
 
     public Page<PostContentResponse> getMyAllPost(Pageable pageable, Authentication authentication){
 
-
         User user = userRepository.findByUserName(authentication.getName())
                 .orElseThrow(()-> new AppException(ErrorCode.USERNAME_NOT_FOUND, authentication.getName() + "이 없습니다."));
         Page<Post> posts = postRepository.findAllByUser(user,pageable);
@@ -123,8 +119,6 @@ public class PostService {
                 .lastModifiedAt(post.getLastModifiedAt())
                 .createdAt(post.getCreatedAt())
                 .build());
-
-
 
         return postContentResponses;
 
