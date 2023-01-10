@@ -105,6 +105,7 @@ public class CommentService {
                 .userName(comment.getUser().getUserName())
                 .postId(comment.getPost().getId())
                 .createdAt(comment.getCreatedAt())
+                .lastModifiedAt(comment.getLastModifiedAt())
                 .build());
         return commentResponses;
     }
