@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 @Getter
 public enum ErrorCode {
     DUPLICATED_USER_NAME(HttpStatus.CONFLICT, "UserName이 중복됩니다."),
+    ALREADY_CLICK_LIKE(HttpStatus.CONFLICT,"이미 좋아요를 눌렀습니다."),
     USERNAME_NOT_FOUND(HttpStatus.NOT_FOUND,"Not founded"),
     INVALID_PASSWORD(HttpStatus.UNAUTHORIZED, "패스워드가 잘못되었습니다."),
     INVALID_TOKEN(HttpStatus.UNAUTHORIZED, "잘못된 토큰입니다."),
