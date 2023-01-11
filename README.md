@@ -15,10 +15,14 @@ swagger 주소 : http://ec2-43-201-77-49.ap-northeast-2.compute.amazonaws.com:80
 | 6     | POST   | /api/v1/users/login                 | 로그인                 |
 | 7     | PUT    | /api/v1/posts/{id}                  | 글 수정                |
 | 8     | GET    | /api/v1/posts                       | 글 전체 조회             |
-| 9     | GET    | /api/v1/posts/{postId}/commets      | 댓글 전체 조회            |
+| 9     | GET    | /api/v1/posts/{postId}/commets      | 댓글  조회            |
 | 10    | POST   | /api/v1/posts/{postId}/commets      | 댓글 작성               |
 | 11    | PUT    | /api/v1/posts/{postId}/commets/{id}      | 댓글 수정               |
 | 12    | DELETE | /api/v1/posts/{postId}/commets/{id} | 댓글 삭제               |
+| 13    |  POST | /api/v1/posts/{id}/likes | 좋아요,좋아요 취소 |
+| 14    | GET | /api/v1/posts/{id}/likes | 좋아요 수 조회 |
+| 15    | POST | /api/v1/users/{id}/role/change | 사용자권한변경  |
+|16     | GET | /api/v1/posts/my | 마이피드조회 |
 
 
 ---
