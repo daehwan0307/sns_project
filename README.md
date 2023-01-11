@@ -5,16 +5,21 @@ swagger 주소 : http://ec2-43-201-77-49.ap-northeast-2.compute.amazonaws.com:80
 ---
 
 # API 명세서
-| Index | Method | URI                 | Description        |
-|-------|--------|---------------------|--------------------|
-| 1     | GET    | /api/v1/hello       | CI/CD 를 위한 TEST API |
-| 2     | POST   | /api/v1/posts       | 글 작성               |
-| 3     | GET    | /api/v1/posts/{id}  | 글 조회               |
-| 4     | DELETE | /api/v1/posts/{id}  | 글 삭제               |
-| 5     | POST   | /api/v1/users/join  | 회원가입               |
-| 6     | POST   | /api/v1/users/login | 로그인                |
-| 7     | PUT    | /api/v1/posts/{id}  | 글 수정 (개발예정)        |
-| 8     | GET    | /api/v1/posts       | 글 전체 조회 (개발예정)     |
+| Index | Method | URI                                 | Description         |
+|-------|--------|-------------------------------------|---------------------|
+| 1     | GET    | /api/v1/hello                       | CI/CD 를 위한 TEST API |
+| 2     | POST   | /api/v1/posts                       | 글 작성                |
+| 3     | GET    | /api/v1/posts/{id}                  | 글 조회                |
+| 4     | DELETE | /api/v1/posts/{id}                  | 글 삭제                |
+| 5     | POST   | /api/v1/users/join                  | 회원가입                |
+| 6     | POST   | /api/v1/users/login                 | 로그인                 |
+| 7     | PUT    | /api/v1/posts/{id}                  | 글 수정                |
+| 8     | GET    | /api/v1/posts                       | 글 전체 조회             |
+| 9     | GET    | /api/v1/posts/{postId}/commets      | 댓글 전체 조회            |
+| 10    | POST   | /api/v1/posts/{postId}/commets      | 댓글 작성               |
+| 11    | PUT    | /api/v1/posts/{postId}/commets/{id}      | 댓글 수정               |
+| 12    | DELETE | /api/v1/posts/{postId}/commets/{id} | 댓글 삭제               |
+
 
 ---
 
