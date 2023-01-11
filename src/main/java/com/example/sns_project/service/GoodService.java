@@ -11,7 +11,6 @@ import com.example.sns_project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -38,7 +37,8 @@ public class GoodService {
         return "좋아요를 눌렀습니다.";
 
     }
-    public Long likeCount(Long postId){
+    public Integer likeCount(Long postId){
+
         return goodRepository.countByPostId(postId);
     }
 }

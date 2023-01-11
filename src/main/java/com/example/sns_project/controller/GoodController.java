@@ -25,7 +25,7 @@ public class GoodController {
     }
     @GetMapping("/{postsId}/likes")
     @ApiOperation(value = "좋아요수", notes = "게시글의 좋아요 개수 조회")
-    public Response<Long> getLikes(@PathVariable Long postsId) {
+    public Response<Integer> getLikes(@PathVariable Long postsId) {
         return Response.success(likeService.likeCount(postsId));
     }
 

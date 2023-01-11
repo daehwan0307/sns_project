@@ -4,8 +4,6 @@ import com.example.sns_project.domain.dto.Response;
 import com.example.sns_project.domain.dto.comment.CommentDeleteResponse;
 import com.example.sns_project.domain.dto.comment.CommentRequest;
 import com.example.sns_project.domain.dto.comment.CommentResponse;
-import com.example.sns_project.domain.dto.post.PostRequest;
-import com.example.sns_project.domain.dto.post.PostResponse;
 import com.example.sns_project.service.CommentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -16,7 +14,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

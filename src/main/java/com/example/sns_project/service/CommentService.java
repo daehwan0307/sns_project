@@ -3,8 +3,6 @@ package com.example.sns_project.service;
 import com.example.sns_project.domain.dto.comment.CommentDeleteResponse;
 import com.example.sns_project.domain.dto.comment.CommentRequest;
 import com.example.sns_project.domain.dto.comment.CommentResponse;
-import com.example.sns_project.domain.dto.post.PostContentResponse;
-import com.example.sns_project.domain.dto.post.PostResponse;
 import com.example.sns_project.domain.entity.Comment;
 import com.example.sns_project.domain.entity.Post;
 import com.example.sns_project.domain.entity.User;
