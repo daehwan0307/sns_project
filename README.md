@@ -93,11 +93,3 @@ swagger 주소 : http://ec2-43-201-77-49.ap-northeast-2.compute.amazonaws.com:80
 
 
 --
-## 특이사항
-    1.postController에서 list조회기능과 수정기능을 완성하지 못하였다.
-    2.post에 현재 user정보를 담는 기능을 아직 완성하지 못하였다. 
-
-
-## 접근방법
-    1. 최대한 Service 계층에서 로직이 수행되려고 노력을 하였다.
-    2. 
