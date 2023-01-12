@@ -31,10 +31,14 @@ public class GoodService {
                 .post(post)
                 .user(user)
                 .build();
-        
-        goodRepository.save(good);
 
-        return "좋아요를 눌렀습니다.";
+        if(goodRepository.findByUserAndPost(user,post).isEmpty()){
+
+            goodRepository.save(good);
+            return "좋아요를 눌렀습니다.";
+        }else {
+            throw new AppException(ErrorCode.ALREADY_CLICK_LIKE,"이미 좋아요를 눌렀습니다.");
+        }
 
     }
     public Integer likeCount(Long postId){
