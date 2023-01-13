@@ -24,4 +24,5 @@ public class Comment extends AuditEntity {
     @JoinColumn(name = "post_id")
     private Post post;
 
+
 }
