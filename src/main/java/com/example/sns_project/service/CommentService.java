@@ -24,29 +24,15 @@ public class CommentService {
     private final UserRepository userRepository;
     private final CommentRepository commentRepository;
 
-    public CommentResponse addComment(CommentRequest dto,String userName,Long postId){
+    public CommentResponse addComment(CommentRequest commentRequestDto,String userName,Long postId){
         User user = userRepository.findByUserName(userName)
                 .orElseThrow(()-> new AppException(ErrorCode.USERNAME_NOT_FOUND, userName + "이 없습니다."));
 
         Post post = postRepository.findById(postId)
                 .orElseThrow(()-> new AppException(ErrorCode.POST_NOT_FOUND,"post가 존재하지 않습니다."));
 
-        Comment comment = Comment.builder()
-                .comment(dto.getComment())
-                .user(user)
-                .post(post)
-                .build();
-        commentRepository.save(comment);
-
-        CommentResponse commentResponse = CommentResponse.builder()
-                .id(comment.getId())
-                .comment(comment.getComment())
-                .userName(user.getUserName())
-                .postId(post.getId())
-                .createdAt(comment.getCreatedAt())
-                .lastModifiedAt(comment.getLastModifiedAt())
-                .build();
-
+        Comment comment = commentRepository.save(commentRequestDto.toEntity(user,post));
+        CommentResponse commentResponse = CommentResponse.fromEntity(comment);
 
         return commentResponse;
 
@@ -75,20 +61,9 @@ public class CommentService {
                 .orElseThrow(()->new AppException(ErrorCode.POST_NOT_FOUND,postsId+"가 없습니다."));
         Comment comment = commentRepository.findById(commentsId)
                 .orElseThrow(()->new AppException(ErrorCode.COMMENT_NOT_FOUND,commentsId+"가 없습니다."));
-
         comment.setComment(dto.getComment());
-
         commentRepository.save(comment);
-
-        CommentResponse commentResponse = CommentResponse.builder()
-                .id(comment.getId())
-                .comment(comment.getComment())
-                .userName(comment.getUser().getUserName())
-                .postId(postsId)
-                .createdAt(comment.getCreatedAt())
-                .lastModifiedAt(comment.getLastModifiedAt())
-                .build();
-
+        CommentResponse commentResponse = CommentResponse.fromEntity(comment);
         return commentResponse;
 
     }

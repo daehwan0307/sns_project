@@ -1,6 +1,7 @@
 package com.example.sns_project.domain.dto.comment;
 
 import com.example.sns_project.domain.entity.AuditEntity;
+import com.example.sns_project.domain.entity.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,4 +21,15 @@ public class CommentResponse extends AuditEntity {
     private Long postId;
     private LocalDateTime createdAt;
     private LocalDateTime lastModifiedAt;
+    public static CommentResponse fromEntity(Comment comment) {
+        return CommentResponse.builder()
+                .id(comment.getId())
+                .comment(comment.getComment())
+                .userName(comment.getUser().getUserName())
+                .postId(comment.getPost().getId())
+                .createdAt(comment.getCreatedAt())
+                .lastModifiedAt(comment.getLastModifiedAt())
+                .build();
+    }
+
 }
